@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patrick Chidiebere David | Software Developer & Tech Builder</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Patrick Chidiebere David - Self-taught Software Developer, Tech Builder, and Award-winning Essayist based in Lagos, Nigeria. Creator of Apostellar.">
+    <meta name="author" content="Patrick Chidiebere David">
+    <meta property="og:title" content="Patrick Chidiebere David - Software Developer & Tech Builder">
+    <meta property="og:description" content="Official portfolio & digital hub of Patrick Chidiebere David. Software developer and writer from Lagos, Nigeria.">
+    <meta property="og:type" content="website">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandBg: '#0F1115',
+                        brandSurface: '#161920',
+                        brandCard: '#1C202B',
+                        brandCardHover: '#252B3A',
+                        brandText: '#F5F3EF',
+                        brandMuted: '#9CA3AF',
+                        brandAccent: '#8A9A86',
+                        brandAccentHover: '#A1B29D',
+                        brandAccentGlow: 'rgba(138, 154, 134, 0.15)',
+                        brandBorder: '#2E3545'
+                    },
+                    fontFamily: {
+                        heading: ['Space Grotesk', 'sans-serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #0F1115;
+            color: #F5F3EF;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+        .typewriter-cursor::after {
+            content: '|';
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        
+        .gradient-border {
+            background: linear-gradient(135deg, rgba(138, 154, 134, 0.4) 0%, rgba(255, 255, 255, 0.05) 100%);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-brandAccent selection:text-brandBg">
+
+    <!-- Intro Splash Screen -->
+    <div id="splashScreen" class="fixed inset-0 z-50 bg-brandBg flex flex-col items-center justify-center p-6 transition-opacity duration-500">
+        <div class="relative w-28 h-28 mb-6 flex items-center justify-center bg-brandCard rounded-full border-2 border-brandAccent shadow-2xl">
+            <span class="text-4xl">👨‍💻</span>
+        </div>
+        <div class="font-heading text-2xl md:text-3xl font-bold tracking-tight text-brandText mb-2 text-center">
+            <span id="typewriterText"></span><span class="typewriter-cursor text-brandAccent"></span>
+        </div>
+        <p class="text-brandMuted text-xs tracking-widest uppercase mb-8">Software Developer &bull; Lagos, Nigeria</p>
+        <button onclick="dismissSplash()" class="px-6 py-2.5 bg-brandSurface border border-brandBorder rounded-full text-xs text-brandMuted hover:text-brandText hover:border-brandAccent transition duration-300">
+            Enter Portfolio &rarr;
+        </button>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 bg-brandBg/90 backdrop-blur-md border-b border-brandBorder/60">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="#hero" class="font-heading text-xl font-bold tracking-tight hover:opacity-80 transition">
+                Patrick David<span class="text-brandAccent">.</span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center space-x-7 text-sm font-medium text-brandMuted">
+                <a href="#about" class="hover:text-brandText transition">Story & Bio</a>
+                <a href="#projects" class="hover:text-brandText transition">Projects</a>
+                <a href="#achievements" class="hover:text-brandText transition">Achievements</a>
+                <a href="#essay-writing" class="hover:text-brandText transition">Writings</a>
+                <a href="#contact" class="hover:text-brandText transition">Contact</a>
+            </nav>
+
+            <a href="https://github.com/patrick-chidiebere" target="_blank" rel="noopener noreferrer" class="hidden md:inline-flex items-center gap-2 px-4 py-2 border border-brandBorder rounded-lg text-xs font-semibold hover:border-brandAccent transition">
+                <i class="fa-brands fa-github text-sm"></i> GitHub
+            </a>
+
+            <!-- Mobile Menu Button -->
+            <button onclick="toggleMobileMenu()" class="md:hidden text-brandText focus:outline-none text-xl p-2" aria-label="Toggle menu">
+                <i class="fa-solid fa-bars" id="menuIcon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav Menu Overlay -->
+        <div id="mobileMenu" class="hidden md:hidden bg-brandSurface border-b border-brandBorder px-6 py-6 space-y-4 text-brandMuted">
+            <a href="#about" onclick="toggleMobileMenu()" class="block text-base hover:text-brandText py-1">Story & Bio</a>
+            <a href="#projects" onclick="toggleMobileMenu()" class="block text-base hover:text-brandText py-1">Featured Projects</a>
+            <a href="#achievements" onclick="toggleMobileMenu()" class="block text-base hover:text-brandText py-1">Achievements & Honors</a>
+            <a href="#essay-writing" onclick="toggleMobileMenu()" class="block text-base hover:text-brandText py-1">Writings & Philosophy</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block text-base hover:text-brandText py-1">Contact & Connect</a>
+            <div class="pt-2 border-t border-brandBorder flex gap-4 flex-wrap">
+                <a href="https://github.com/patrick-chidiebere" target="_blank" class="text-xs font-medium text-brandAccent">GitHub</a>
+                <a href="https://www.linkedin.com/in/patrick-chidiebere-david" target="_blank" class="text-xs font-medium text-brandAccent">LinkedIn</a>
+                <a href="https://medium.com/@patrickchidiebered" target="_blank" class="text-xs font-medium text-brandAccent">Medium</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-6xl w-full mx-auto px-6 py-10 space-y-24">
+
+        <!-- Hero / Profile Section -->
+        <section id="hero" class="pt-4">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <!-- Image / Avatar Column -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative group max-w-sm w-full">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-brandAccent to-neutral-600 rounded-3xl blur opacity-30 group-hover:opacity-60 transition duration-500"></div>
+                        <div class="relative bg-brandCard p-6 rounded-2xl border border-brandBorder flex flex-col items-center text-center">
+                            <div class="w-40 h-40 rounded-full bg-gradient-to-tr from-brandSurface to-brandCardHover border-2 border-brandAccent flex items-center justify-center shadow-2xl mb-4">
+                                <span class="text-6xl">🚀</span>
+                            </div>
+                            <div class="w-full mt-2 px-2 pb-1 flex items-center justify-between border-t border-brandBorder/60 pt-4">
+                                <div>
+                                    <p class="text-xs text-brandMuted font-medium text-left">Based in</p>
+                                    <p class="text-sm font-semibold text-brandText"><i class="fa-solid fa-location-dot text-brandAccent mr-1"></i> Lagos, Nigeria</p>
+                                </div>
+                                <span class="px-3 py-1 bg-brandAccentGlow text-brandAccent text-xs font-bold rounded-full border border-brandAccent/30">
+                                    Self-Taught Dev
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text & Brief Intro Column -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-brandAccentGlow text-brandAccent text-xs font-semibold rounded-full uppercase tracking-wider border border-brandAccent/20">
+                        <span class="w-2 h-2 rounded-full bg-brandAccent animate-pulse"></span> Open for Software Collaboration
+                    </div>
+                    
+                    <h1 class="font-heading text-4xl sm:text-5xl font-bold tracking-tight text-brandText leading-tight">
+                        Building Software With Purpose & Persistence
+                    </h1>
+
+                    <p class="text-brandMuted leading-relaxed text-base sm:text-lg">
+                        Hi, I’m <strong class="text-brandText">Patrick Chidiebere David</strong> — a self-taught software developer, tech builder, and award-winning essayist based in Lagos, Nigeria. I specialize in designing modern web architecture, crafting responsive digital interfaces, and solving real-world challenges through code and analytical thought.
+                    </p>
+
+                    <!-- Tech Stack Pills -->
+                    <div class="pt-2">
+                        <p class="text-xs uppercase tracking-wider text-brandMuted font-bold mb-3">Core Stack & Tooling</p>
+                        <div class="flex flex-wrap justify-center lg:justify-start gap-2">
+                            <span class="px-3 py-1 bg-brandSurface border border-brandBorder rounded-lg text-xs font-medium text-brandText"><i class="fa-brands fa-html5 text-orange-500 mr-1.5"></i> HTML5 / CSS3</span>
+                            <span class="px-3 py-1 bg-brandSurface border border-brandBorder rounded-lg text-xs font-medium text-brandText"><i class="fa-brands fa-js text-yellow-400 mr-1.5"></i> JavaScript (ES6+)</span>
+                            <span class="px-3 py-1 bg-brandSurface border border-brandBorder rounded-lg text-xs font-medium text-brandText"><i class="fa-brands fa-python text-blue-400 mr-1.5"></i> Python</span>
+                            <span class="px-3 py-1 bg-brandSurface border border-brandBorder rounded-lg text-xs font-medium text-brandText"><i class="fa-solid fa-wind text-teal-400 mr-1.5"></i> Tailwind CSS</span>
+                            <span class="px-3 py-1 bg-brandSurface border border-brandBorder rounded-lg text-xs font-medium text-brandText"><i class="fa-brands fa-git-alt text-orange-400 mr-1.5"></i> Git & GitHub</span>
+                            <span class="px-3 py-1 bg-brandSurface border border-brandBorder rounded-lg text-xs font-medium text-brandText"><i class="fa-solid fa-terminal text-brandAccent mr-1.5"></i> AI & Web Architecture</span>
+                        </div>
+                    </div>
+
+                    <!-- Call To Action Buttons -->
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#projects" class="px-6 py-3 bg-brandText text-brandBg font-bold text-sm rounded-xl hover:bg-neutral-200 transition duration-200 shadow-lg shadow-white/5">
+                            Explore Projects
+                        </a>
+                        <a href="#about" class="px-6 py-3 bg-brandSurface border border-brandBorder text-brandText font-semibold text-sm rounded-xl hover:border-brandAccent hover:bg-brandAccentGlow transition duration-200">
+                            Read Full Biography
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detailed Story & Biography Section -->
+        <section id="about" class="bg-brandSurface border border-brandBorder rounded-2xl p-8 sm:p-12 space-y-8">
+            <div class="max-w-3xl">
+                <span class="text-xs font-bold text-brandAccent uppercase tracking-widest">Biography & Background</span>
+                <h2 class="font-heading text-3xl font-bold text-brandText mt-1">The Reality & Journey of Building from Lagos</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 text-brandMuted leading-relaxed text-sm sm:text-base">
+                <div class="space-y-4">
+                    <h3 class="font-heading text-lg font-bold text-brandText flex items-center gap-2">
+                        <i class="fa-solid fa-code-commit text-brandAccent"></i> Self-Taught Developer
+                    </h3>
+                    <p>
+                        Learning software engineering outside traditional academic programs requires a unique kind of discipline. My journey as a programmer started with curiosity and a vision to create tools that make a difference. 
+                    </p>
+                    <p>
+                        Navigating tutorials, documentation, and technical hurdles independently taught me how to break down complex systems, solve problems methodically, and write clean, resilient code.
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="font-heading text-lg font-bold text-brandText flex items-center gap-2">
+                        <i class="fa-solid fa-bolt text-brandAccent"></i> Resilience in Lagos
+                    </h3>
+                    <p>
+                        Building tech from Lagos, Nigeria comes with real-world challenges—power outages, intermittent connections, and limited initial access to premium software infrastructure.
+                    </p>
+                    <p>
+                        Rather than viewing these as setbacks, they shaped my work ethic. As I wrote in my Medium publication, <em>"The Reality of Coding in Lagos, Nigeria,"</em> building under constraint forces you to plan thoroughly, write efficient code, and value every hour of development.
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="font-heading text-lg font-bold text-brandText flex items-center gap-2">
+                        <i class="fa-solid fa-pen-nib text-brandAccent"></i> Writer & Scholar
+                    </h3>
+                    <p>
+                        Beyond writing code, I am a passionate analytical writer. Writing clarifies thinking—a skill directly reflected in my multi-year winning streak at the <strong>National Travel Essay Competition (NTEC)</strong>, KHREF essay excerpts, and the CrowdPen AI challenge.
+                    </p>
+                    <p>
+                        Winning recognition for persistence reflects my approach to both literature and technology: showing up, refining work constantly, and striving for excellence.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Highlights Banner -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 border-t border-brandBorder">
+                <div class="p-4 bg-brandCard rounded-xl border border-brandBorder text-center">
+                    <p class="font-heading text-2xl font-bold text-brandText">4+</p>
+                    <p class="text-xs text-brandMuted mt-1">National Essay Honors</p>
+                </div>
+                <div class="p-4 bg-brandCard rounded-xl border border-brandBorder text-center">
+                    <p class="font-heading text-2xl font-bold text-brandText">2nd Place</p>
+                    <p class="text-xs text-brandMuted mt-1">Caritas Nigeria 15th Anniversary</p>
+                </div>
+                <div class="p-4 bg-brandCard rounded-xl border border-brandBorder text-center">
+                    <p class="font-heading text-2xl font-bold text-brandText">Apostellar</p>
+                    <p class="text-xs text-brandMuted mt-1">Core Tech Platform</p>
+                </div>
+                <div class="p-4 bg-brandCard rounded-xl border border-brandBorder text-center">
+                    <p class="font-heading text-2xl font-bold text-brandText">Lagos</p>
+                    <p class="text-xs text-brandMuted mt-1">Base & Engineering Hub</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Primary Project Section -->
+        <section id="projects" class="space-y-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-brandBorder pb-4 gap-4">
+                <div>
+                    <span class="text-xs font-bold text-brandAccent uppercase tracking-widest">Engineering & Products</span>
+                    <h2 class="font-heading text-3xl font-bold text-brandText mt-1 flex items-center gap-3">
+                        <i class="fa-solid fa-laptop-code text-brandAccent"></i> Featured Project
+                    </h2>
+                </div>
+                <p class="text-brandMuted text-sm max-w-md">
+                    Focused on creating high-quality, efficient web platforms. My flagship project represents core technical architecture and web space design.
+                </p>
+            </div>
+
+            <!-- Spotlight Card: Apostellar -->
+            <div class="bg-gradient-to-br from-brandCard to-brandSurface border-2 border-brandBorder rounded-2xl p-8 sm:p-10 relative overflow-hidden group hover:border-brandAccent transition duration-300">
+                <div class="absolute top-0 right-0 w-80 h-80 bg-brandAccentGlow rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+                    <div class="lg:col-span-7 space-y-5">
+                        <div class="flex items-center gap-3 flex-wrap">
+                            <span class="px-3 py-1 bg-brandAccent text-brandBg font-bold text-xs rounded-full uppercase tracking-wider">Primary Web Engine</span>
+                            <span class="text-xs text-brandMuted font-mono"><i class="fa-solid fa-globe text-brandAccent mr-1"></i> Live Production</span>
+                        </div>
+
+                        <h3 class="font-heading text-3xl sm:text-4xl font-bold text-brandText group-hover:text-brandAccent transition">
+                            APOSTELLAR
+                        </h3>
+
+                        <p class="text-brandMuted text-base leading-relaxed">
+                            APOSTELLAR is my primary software workspace and digital project infrastructure. Designed with clean semantic HTML, modular styling, and modern responsive patterns, it serves as the foundation for software experiments, innovation concepts, and web deployment pipelines.
+                        </p>
+
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-2.5 py-1 bg-brandBg border border-brandBorder text-xs text-brandMuted rounded-md">Web Architecture</span>
+                            <span class="px-2.5 py-1 bg-brandBg border border-brandBorder text-xs text-brandMuted rounded-md">Semantic UI</span>
+                            <span class="px-2.5 py-1 bg-brandBg border border-brandBorder text-xs text-brandMuted rounded-md">Responsive Systems</span>
+                            <span class="px-2.5 py-1 bg-brandBg border border-brandBorder text-xs text-brandMuted rounded-md">GitHub Pages</span>
+                        </div>
+
+                        <div class="pt-4 flex items-center gap-4">
+                            <a href="https://patrick-chidiebere.github.io/Apostellar./" target="_blank" rel="noopener noreferrer" class="px-6 py-3 bg-brandAccent hover:bg-brandAccentHover text-brandBg font-bold text-sm rounded-xl inline-flex items-center gap-2 transition duration-200">
+                                Launch Live Application <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                            <a href="https://github.com/patrick-chidiebere" target="_blank" rel="noopener noreferrer" class="px-5 py-3 border border-brandBorder text-brandText hover:border-brandAccent text-sm font-semibold rounded-xl inline-flex items-center gap-2 transition duration-200">
+                                <i class="fa-brands fa-github"></i> Repository
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 bg-brandBg p-6 rounded-xl border border-brandBorder space-y-4">
+                        <div class="flex items-center justify-between border-b border-brandBorder pb-3">
+                            <span class="text-xs font-bold text-brandText uppercase tracking-wider">Key Capabilities</span>
+                            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                        </div>
+                        <ul class="space-y-3 text-sm text-brandMuted">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-brandAccent mt-1 text-xs"></i>
+                                <span>Fast loading and light payload architecture</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-brandAccent mt-1 text-xs"></i>
+                                <span>Mobile-first fluid responsive grid alignment</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-brandAccent mt-1 text-xs"></i>
+                                <span>Integrated hub for ongoing development projects</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements & Honors Timeline -->
+        <section id="achievements" class="space-y-8">
+            <div class="border-b border-brandBorder pb-4">
+                <span class="text-xs font-bold text-brandAccent uppercase tracking-widest">Recognitions & Merit</span>
+                <h2 class="font-heading text-3xl font-bold text-brandText mt-1 flex items-center gap-3">
+                    <i class="fa-solid fa-trophy text-brandAccent"></i> National Honors & Competitive Streak
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Timeline List -->
+                <div class="lg:col-span-8 space-y-4">
+                    <!-- Caritas Nigeria 2nd Place -->
+                    <div class="bg-brandCard border-l-4 border-brandAccent p-6 rounded-r-xl border-t border-b border-r border-brandBorder hover:bg-brandCardHover transition duration-200">
+                        <div class="flex justify-between items-start">
+                            <span class="text-xs font-bold text-brandAccent uppercase tracking-widest">2025 &bull; National Honor</span>
+                            <span class="px-2.5 py-0.5 bg-brandAccentGlow text-brandAccent text-xs font-semibold rounded-full">2nd Place Winner</span>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-brandText mt-2">
+                            Caritas Nigeria 15th Anniversary Essay Competition
+                        </h3>
+                        <p class="text-brandAccent text-sm font-medium mt-1">2nd Place Nationwide Distinction</p>
+                        <p class="text-brandMuted text-sm mt-3 leading-relaxed">
+                            Recognized nationally for excellence in analytical writing highlighting humanitarian impact, sustainable development, and social development across Nigeria.
+                        </p>
+                        <div class="mt-4">
+                            <a href="https://caritas-africa.org/wp-content/uploads/2025/10/Caritas-Nigeria-%40-15-Anniversary-Brochure.pdf" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-brandText hover:text-brandAccent inline-flex items-center gap-1.5">
+                                <i class="fa-solid fa-file-pdf text-red-400"></i> View Anniversary Brochure PDF &rarr;
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 2026 NTEC -->
+                    <div class="bg-brandCard border-l-4 border-brandAccent p-6 rounded-r-xl border-t border-b border-r border-brandBorder hover:bg-brandCardHover transition duration-200">
+                        <div class="flex justify-between items-start">
+                            <span class="text-xs font-bold text-brandAccent uppercase tracking-widest">2026 &bull; National Award</span>
+                            <span class="px-2.5 py-0.5 bg-brandAccentGlow text-brandAccent text-xs font-semibold rounded-full">Runner-Up</span>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-brandText mt-2">
+                            15th National Travel Essay Competition (NTEC)
+                        </h3>
+                        <p class="text-brandAccent text-sm font-medium mt-1">2nd Place Nationwide & Recipient of Inaugural Steadfast Spirit Award</p>
+                        <p class="text-brandMuted text-sm mt-3 leading-relaxed">
+                            Recognized among youth essayists nationwide for analytical writing on aviation and infrastructure. Awarded the special NTEC Steadfast Spirit Award celebrating persistence, continuous improvement, and intellectual resilience.
+                        </p>
+                    </div>
+
+                    <!-- 2025 NTEC -->
+                    <div class="bg-brandCard border-l-4 border-brandAccent p-6 rounded-r-xl border-t border-b border-r border-brandBorder hover:bg-brandCardHover transition duration-200">
+                        <div class="flex justify-between items-start">
+                            <span class="text-xs font-bold text-brandAccent uppercase tracking-widest">2025 &bull; National Competition</span>
+                            <span class="px-2.5 py-0.5 bg-brandAccentGlow text-brandAccent text-xs font-semibold rounded-full">2nd Place</span>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-brandText mt-2">
+                            14th National Travel Essay Competition (NTEC)
+                        </h3>
+                        <p class="text-brandAccent text-sm font-medium mt-1">Second Place National Distinction</p>
+                        <p class="text-brandMuted text-sm mt-3 leading-relaxed">
+                            Secured second place in the national competition for analytical proposals regarding Nigerian transport systems, tourism economics, and digital modernizations.
+                        </p>
+                    </div>
+
+                    <!-- 2024 Essay -->
+                    <div class="bg-brandCard border-l-4 border-brandAccent p-6 rounded-r-xl border-t border-b border-r border-brandBorder hover:bg-brandCardHover transition duration-200">
+                        <div class="flex justify-between items-start">
+                            <span class="text-xs font-bold text-brandAccent uppercase tracking-widest">2024 &bull; National Competition</span>
+                            <span class="px-2.5 py-0.5 bg-brandAccentGlow text-brandAccent text-xs font-semibold rounded-full">3rd Place</span>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-brandText mt-2">
+                            13th National Travel Essay Competition (NTEC)
+                        </h3>
+                        <p class="text-brandAccent text-sm font-medium mt-1">Third Place National Podium Finish</p>
+                        <p class="text-brandMuted text-sm mt-3 leading-relaxed">
+                            Marked the beginning of a consecutive multi-year streak of national writing distinction with research-backed writing on Nigerian civil aviation and growth.
+                        </p>
+                    </div>
+
+                    <!-- 2024 Chess -->
+                    <div class="bg-brandCard border-l-4 border-brandAccent p-6 rounded-r-xl border-t border-b border-r border-brandBorder hover:bg-brandCardHover transition duration-200">
+                        <div class="flex justify-between items-start">
+                            <span class="text-xs font-bold text-brandAccent uppercase tracking-widest">2024 &bull; Strategic Sports</span>
+                            <span class="px-2.5 py-0.5 bg-brandAccentGlow text-brandAccent text-xs font-semibold rounded-full">Bronze Medal</span>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-brandText mt-2">
+                            NNPC–SNEPCo Chess Championship
+                        </h3>
+                        <p class="text-brandAccent text-sm font-medium mt-1">3rd Place Team Distinction</p>
+                        <p class="text-brandMuted text-sm mt-3 leading-relaxed">
+                            Competed in high-stakes competitive chess, demonstrating strategic planning, positional analysis, and tactical focus under tournament time controls.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Strategic Mindset Sidebar Card -->
+                <div class="lg:col-span-4 bg-brandSurface border border-brandBorder rounded-2xl p-6 flex flex-col justify-between space-y-6">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-brandAccentGlow flex items-center justify-center text-brandAccent text-2xl mb-4">
+                            <i class="fa-solid fa-chess-knight"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-brandText mb-2">Strategy & Persistence</h3>
+                        <p class="text-brandMuted text-sm leading-relaxed">
+                            Whether analyzing positional chess structures, humanitarian frameworks, or developing technical AI essays, strategic clarity is the common thread across all my pursuits.
+                        </p>
+                    </div>
+
+                    <div class="border-t border-brandBorder pt-4 text-xs text-brandMuted italic">
+                        "Every time I didn't win, I grew. That courage to keep trying, writing, and coding is what builds enduring software."
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Essay Writing & Journal Section -->
+        <section id="essay-writing" class="space-y-8">
+            <div class="border-b border-brandBorder pb-4">
+                <span class="text-xs font-bold text-brandAccent uppercase tracking-widest">Thought Leadership & Essays</span>
+                <h2 class="font-heading text-3xl font-bold text-brandText mt-1 flex items-center gap-3">
+                    <i class="fa-solid fa-newspaper text-brandAccent"></i> Publications & Challenge Entries
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- CrowdPen AI Challenge -->
+                <article class="bg-brandCard border border-brandBorder rounded-xl p-6 flex flex-col justify-between hover:border-brandAccent transition duration-200">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center text-xs text-brandAccent font-mono">
+                            <span>CrowdPen Challenge</span>
+                            <span>Featured Essay</span>
+                        </div>
+                        <h3 class="font-heading text-lg font-bold text-brandText hover:text-brandAccent transition">
+                            <a href="https://www.crowdpen.co/@Patrick/stories/IfIHad%24200/programming-the-future-why-200-is-more-than-money-for-cortex-ai" target="_blank" rel="noopener noreferrer">
+                                Programming the Future: Why $200 is More Than Money for Cortex AI
+                            </a>
+                        </h3>
+                        <p class="text-brandMuted text-sm leading-relaxed">
+                            An entry into the CrowdPen challenge exploring how micro-funding and AI systems can empower African developers and accelerate technological capability.
+                        </p>
+                    </div>
+                    <div class="pt-6">
+                        <a href="https://www.crowdpen.co/@Patrick/stories/IfIHad%24200/programming-the-future-why-200-is-more-than-money-for-cortex-ai" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-brandText hover:text-brandAccent flex items-center gap-2">
+                            Read on CrowdPen &rarr;
+                        </a>
+                    </div>
+                </article>
+
+                <!-- KHREF Essay Excerpt -->
+                <article class="bg-brandCard border border-brandBorder rounded-xl p-6 flex flex-col justify-between hover:border-brandAccent transition duration-200">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center text-xs text-brandAccent font-mono">
+                            <span>KHREF 2025</span>
+                            <span>Leadership Essay</span>
+                        </div>
+                        <h3 class="font-heading text-lg font-bold text-brandText hover:text-brandAccent transition">
+                            <a href="https://khref.org/2025-essay-excerpts/" target="_blank" rel="noopener noreferrer">
+                                Leadership Matters: KHREF Essay Excerpts
+                            </a>
+                        </h3>
+                        <p class="text-brandMuted text-sm leading-relaxed">
+                            Featured analytical perspectives on leadership, governance, and institutional accountability published in the 2025 KHREF essay excerpts.
+                        </p>
+                    </div>
+                    <div class="pt-6">
+                        <a href="https://khref.org/2025-essay-excerpts/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-brandText hover:text-brandAccent flex items-center gap-2">
+                            View KHREF Excerpts &rarr;
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Medium Article -->
+                <article class="bg-brandCard border border-brandBorder rounded-xl p-6 flex flex-col justify-between hover:border-brandAccent transition duration-200">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center text-xs text-brandAccent font-mono">
+                            <span>Medium Article</span>
+                            <span>Tech Journal</span>
+                        </div>
+                        <h3 class="font-heading text-lg font-bold text-brandText hover:text-brandAccent transition">
+                            <a href="https://medium.com/@patrickchidiebered/the-reality-of-coding-in-lagos-nigeria-f939ce94a1be" target="_blank" rel="noopener noreferrer">
+                                The Reality of Coding in Lagos, Nigeria
+                            </a>
+                        </h3>
+                        <p class="text-brandMuted text-sm leading-relaxed">
+                            An insightful personal essay exploring what programming tutorials don't teach you when building software from Lagos—handling infrastructure and resilience.
+                        </p>
+                    </div>
+                    <div class="pt-6">
+                        <a href="https://medium.com/@patrickchidiebered/the-reality-of-coding-in-lagos-nigeria-f939ce94a1be" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-brandText hover:text-brandAccent flex items-center gap-2">
+                            Read on Medium &rarr;
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Contact & Connect Section -->
+        <section id="contact" class="bg-gradient-to-br from-brandCard to-brandSurface border border-brandBorder rounded-2xl p-8 sm:p-12 text-center space-y-6 relative overflow-hidden">
+            <div class="max-w-xl mx-auto space-y-4">
+                <span class="px-3 py-1 bg-brandAccentGlow text-brandAccent text-xs font-bold rounded-full uppercase tracking-wider border border-brandAccent/20">
+                    Get In Touch
+                </span>
+                <h2 class="font-heading text-3xl font-bold text-brandText">Let's Build Something Great Together</h2>
+                <p class="text-brandMuted text-sm sm:text-base leading-relaxed">
+                    Interested in collaborating on web development projects, discussing software architecture, or reviewing writing samples? Connect with me across all my official channels below.
+                </p>
+            </div>
+
+            <!-- Social Media Icon Buttons with Working Verified Links -->
+            <div class="flex flex-wrap justify-center gap-4 text-xl pt-2">
+                <a href="https://github.com/patrick-chidiebere" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" title="GitHub" class="w-14 h-14 rounded-2xl bg-brandBg border border-brandBorder flex items-center justify-center text-brandMuted hover:text-brandText hover:border-brandAccent hover:bg-brandAccentGlow transition duration-200">
+                    <i class="fa-brands fa-github text-2xl"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/patrick-chidiebere-david" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" title="LinkedIn" class="w-14 h-14 rounded-2xl bg-brandBg border border-brandBorder flex items-center justify-center text-brandMuted hover:text-brandText hover:border-brandAccent hover:bg-brandAccentGlow transition duration-200">
+                    <i class="fa-brands fa-linkedin-in text-2xl"></i>
+                </a>
+                <a href="https://x.com/patrick_c_david" target="_blank" rel="noopener noreferrer" aria-label="X Twitter Profile" title="X (Twitter)" class="w-14 h-14 rounded-2xl bg-brandBg border border-brandBorder flex items-center justify-center text-brandMuted hover:text-brandText hover:border-brandAccent hover:bg-brandAccentGlow transition duration-200">
+                    <i class="fa-brands fa-x-twitter text-2xl"></i>
+                </a>
+                <a href="https://www.instagram.com/patrick_chidiebere_david/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile" title="Instagram" class="w-14 h-14 rounded-2xl bg-brandBg border border-brandBorder flex items-center justify-center text-brandMuted hover:text-brandText hover:border-brandAccent hover:bg-brandAccentGlow transition duration-200">
+                    <i class="fa-brands fa-instagram text-2xl"></i>
+                </a>
+                <a href="https://www.tiktok.com/@dave_patri?_r=1&_t=ZS-9ARdrP2FHxo" target="_blank" rel="noopener noreferrer" aria-label="TikTok Profile" title="TikTok" class="w-14 h-14 rounded-2xl bg-brandBg border border-brandBorder flex items-center justify-center text-brandMuted hover:text-brandText hover:border-brandAccent hover:bg-brandAccentGlow transition duration-200">
+                    <i class="fa-brands fa-tiktok text-2xl"></i>
+                </a>
+                <a href="https://www.facebook.com/share/1AwfYirwkH/" target="_blank" rel="noopener noreferrer" aria-label="Facebook Profile" title="Facebook" class="w-14 h-14 rounded-2xl bg-brandBg border border-brandBorder flex items-center justify-center text-brandMuted hover:text-brandText hover:border-brandAccent hover:bg-brandAccentGlow transition duration-200">
+                    <i class="fa-brands fa-facebook-f text-2xl"></i>
+                </a>
+                <a href="https://medium.com/@patrickchidiebered" target="_blank" rel="noopener noreferrer" aria-label="Medium Profile" title="Medium" class="w-14 h-14 rounded-2xl bg-brandBg border border-brandBorder flex items-center justify-center text-brandMuted hover:text-brandText hover:border-brandAccent hover:bg-brandAccentGlow transition duration-200">
+                    <i class="fa-brands fa-medium text-2xl"></i>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-brandBorder/80 py-10 bg-brandBg text-brandMuted text-xs">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+            <div>
+                <p class="font-bold text-brandText text-sm">Patrick Chidiebere David</p>
+                <p class="mt-1 text-brandMuted">Software Developer & Award-Winning Essayist &bull; Lagos, Nigeria</p>
+            </div>
+
+            <div class="flex items-center gap-6 text-sm flex-wrap justify-center">
+                <a href="#about" class="hover:text-brandText transition">Bio</a>
+                <a href="#projects" class="hover:text-brandText transition">Projects</a>
+                <a href="#achievements" class="hover:text-brandText transition">Honors</a>
+                <a href="#essay-writing" class="hover:text-brandText transition">Writings</a>
+            </div>
+
+            <p>&copy; <span id="year"></span> Patrick Chidiebere David. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Interactive Client Scripts -->
+    <script>
+        // Set dynamic year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle logic
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const icon = document.getElementById('menuIcon');
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                icon.className = 'fa-solid fa-bars';
+            } else {
+                icon.className = 'fa-solid fa-xmark';
+            }
+        }
+
+        // Typewriter Effect for Splash Screen Intro
+        const nameText = "Patrick Chidiebere David";
+        const typewriterEl = document.getElementById('typewriterText');
+        let index = 0;
+
+        function typeEffect() {
+            if (index < nameText.length) {
+                typewriterEl.textContent += nameText.charAt(index);
+                index++;
+                setTimeout(typeEffect, 45);
+            } else {
+                setTimeout(dismissSplash, 800);
+            }
+        }
+
+        function dismissSplash() {
+            const splash = document.getElementById('splashScreen');
+            if (splash) {
+                splash.classList.add('opacity-0', 'pointer-events-none');
+                setTimeout(() => splash.remove(), 500);
+            }
+        }
+
+        // Initialize Typewriter on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(typeEffect, 250);
+        });
+    </script>
+</body>
+</html>
